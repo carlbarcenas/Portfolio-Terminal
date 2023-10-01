@@ -2,26 +2,72 @@ console.log("Communicating with page");
 
 // Command Line Environment Selectors
 const cli = document.querySelector('#input');
-const response = document.querySelector('.response');
+const response_section = document.querySelector('#response');
 
 // Initializing:
 // TODO - INITIALIZING... ANIMATION TYPING EFFECT
 const init_message = document.createElement('div');
 init_message.textContent = "Initializing";
-response.appendChild(init_message);
+response_section.appendChild(init_message);
 
 // Welcome message
 const welcome_message = document.createElement('div');
 welcome_message.textContent = "Welcome to CarlOS";
-response.appendChild(welcome_message);
+response_section.appendChild(welcome_message);
 
-// TODO: Autotype help command for first command on load
+// TODO: Autotype 'help' command for first command on load
 
 
 // Listen and Respond
+// Helper Function to print commands
+function printCommands(textArr) {
+    for(let i = 0; i < textArr.length; i++) {
+        let newline = document.createElement('p');
+        newline.classList.add('line');
+        newline.innerHTML = help[i];
+        document.getElementById('response').appendChild(newline);
+    }
+}
+
+// Switch Case function for commands
+function displayResponse(cmd) {
+    let cmdText = document.createElement('span');
+    cmdText.innerHTML = cmd + "<br />";
+    let name1 = document.createElement('span');
+    name1.innerHTML = "guest";
+    name1.style.color = "rgb(215, 153, 33)";
+    let name2 = document.createElement('span');
+    name2.innerHTML = " @ ";
+    name2.style.color = "rgb(168, 153, 132)";
+    let name3 = document.createElement('span');
+    name3.innerHTML = "www.cbarcenas.com";
+    name3.style.color = "rgb(152, 151, 26)";
+    let name4 = document.createElement('span');
+    name4.innerHTML = " :$ ~ ";
+    name4.style.color = "rgb(168, 153, 132)";
+    document.getElementById('response').appendChild(name1);
+    document.getElementById('response').appendChild(name2);
+    document.getElementById('response').appendChild(name3);
+    document.getElementById('response').appendChild(name4);
+    document.getElementById('response').appendChild(cmdText);
+
+    switch(cmd.toLowerCase()) {
+        case 'help':
+            printCommands(help);
+            break;
+        default:
+            let errorp = document.createElement('p');
+            errorp.classList.add('line');
+            errorp.innerHTML = "'" + cmd + "' is not recognized as a command. Type 'help' for a list of valid commands.";
+            document.getElementById('response').appendChild(errorp);
+            break;
+    }
+}
+
+// Main Input Event Listener
 cli.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
-        console.log(cli.value);
-        cli.value = "";
+        displayResponse(cli.value);
+        cli.value = ""; // Reset input
     }
 })

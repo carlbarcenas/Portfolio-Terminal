@@ -6,23 +6,31 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles.css">
     <Title>CarlOS | Terminal</Title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
 </head>
 
 <body>
-    <!--Response section will be filled using DOM-->
-    <div class="response">
+    <div id="terminal-container">
+        <!--Response section will be filled using DOM-->
+        <div id="response">
 
-    </div>
-    <div class="command-line">
-        <div>
-            <span style="color: rgb(215, 153, 33);">guest</span>
-            <span style="color: rgb(168, 153, 132);">@</span>
-            <span style="color: rgb(152, 151, 26);">www.cbarcenas.com</span>
-            <span style="color: rgb(168, 153, 132);">:$ ~ </span>
         </div>
-        <input id="input" onblur="this.focus()" autofocus />
+
+        <!--Command Input Line-->
+        <div id="command-line" class="line">
+            <div>
+                <span style="color: rgb(215, 153, 33);">guest</span>
+                <span style="color: rgb(168, 153, 132);">@</span>
+                <span style="color: rgb(152, 151, 26);">www.cbarcenas.com</span>
+                <span style="color: rgb(168, 153, 132);">:$ ~ </span>
+            </div>
+            <input id="input" onblur="this.focus()" autofocus />
+        </div>
     </div>
 
+    <script src="commands.js"></script>
     <script src="script.js"></script>
 </body>
 
