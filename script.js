@@ -21,11 +21,18 @@ response_section.appendChild(welcome_message);
 // Listen and Respond
 // Helper Function to print commands
 function printCommands(textArr) {
-    for(let i = 0; i < textArr.length; i++) {
+    for (let i = 0; i < textArr.length; i++) {
         let newline = document.createElement('p');
         newline.classList.add('line');
-        newline.innerHTML = help[i];
+        newline.innerHTML = textArr[i];
         document.getElementById('response').appendChild(newline);
+    }
+}
+
+// Function to clear page
+function clear(parent) {
+    while(parent.firstChild) {
+        parent.removeChild(parent.firstChild);
     }
 }
 
@@ -51,9 +58,28 @@ function displayResponse(cmd) {
     document.getElementById('response').appendChild(name4);
     document.getElementById('response').appendChild(cmdText);
 
-    switch(cmd.toLowerCase()) {
+    switch (cmd.toLowerCase()) {
         case 'help':
             printCommands(help);
+            break;
+        case 'about':
+            printCommands(about);
+            break;
+        case 'resume':
+            break;
+        case 'projects':
+            break;
+        case 'linkedin':
+            printCommands(linkedin);
+            break;
+        case 'github':
+            printCommands(github);
+            break;
+        case 'contact':
+            printCommands(contact);
+            break;
+        case 'clear':
+            clear(document.querySelector('#response'));
             break;
         default:
             let errorp = document.createElement('p');
